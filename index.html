@@ -53,7 +53,12 @@
             text-transform: uppercase;
             cursor: pointer;
             letter-spacing: calc(var(--base-size) * 0.25);
-            transition: background-position 1.5s allow-discrete, transform 2.5s allow-discrete, box-shadow 0.5s allow-discrete;
+            transition:
+                background-position 1.5s allow-discrete,
+                transform 1s allow-discrete,
+                box-shadow 0.5s allow-discrete,
+                color 700ms ease-in-out allow-discrete,
+                z-index 0.5s allow-discrete;
         }
 
         button:first-child {
@@ -102,6 +107,24 @@
             transform: scale(1.1);
         }
 
+        button:active {
+            transform: scale(1.25);
+            box-shadow: 0 0 0 5px rgba(239, 255, 20, 0.5);
+        }
+
+        .clicked-effect {
+            transform: scale(1.25)!important;
+            box-shadow: 0 0 0 25px rgba(255, 255, 20, 0.5);
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+
+        .clicked-effect-alt {
+            transform: scale(1.25)!important;
+            box-shadow: 0 0 0 25px rgba(132, 0, 255, 0.5);
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+
+
         @keyframes slide {
             0% {
                 background-position: 0;
@@ -131,6 +154,31 @@
     </div>
     <button class="btn">Blue Pill</div>
         </div>
+        <script>
+            const redPill = document.querySelector('.btn:nth-child(1)');
+            const bluePill = document.querySelector('.btn:nth-child(2)');
+            redPill.addEventListener('click', () =>
+            {
+                redPill.classList.add('clicked-effect');
+                redPill.style.color = 'yellow';
+                setTimeout(() =>
+                {
+                    redPill.classList.remove('clicked-effect');
+                    redPill.style.color = 'white';
+                }, 700);
+            });
+            bluePill.addEventListener('click', () =>
+            {
+                bluePill.classList.add('clicked-effect-alt');
+                bluePill.style.color = 'cyan';
+                setTimeout(() =>
+                {
+                    bluePill.classList.remove('clicked-effect-alt');
+                    bluePill.style.color = 'white';
+                }, 700);
+            });
+        </script>
+
 
 </body>
 
